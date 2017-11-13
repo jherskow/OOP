@@ -1,0 +1,168 @@
+jherskow
+
+
+====================================
+= README for ex3:   ?????™       =
+====================================
+
+==============================
+=      File Description     =
+==============================
+1. Description of any java files not mentioned in this document.
+   The description should include the
+   purpose of each class and its main methods.
+
+The only class not specified is LinkedListFacadeSet.
+It's purpose is to wrap a linked list as requested.
+
+==============================
+=           Design           =
+==============================
+2. How you implemented OpenHashSet’s table.
+
+OpenHashSet's table is simply an array of linked lists,
+wrapped by the wrapper class LinkedListFacadeSet.
+
+Since the linked lists have contains and add(no duplicates) implemented,
+those actions are delegated to the linked list.
+
+Additionally, when rehashing, elements are added to the new location
+by adding them to the appropriate linked list.
+In this way, the numberOfElements is unchanged during rehash, saving time.
+   
+
+3. How you implemented the deletion mechanism in ClosedHashSet.
+
+The deletion mechanism is implemented by setting some string as a
+variable DELETED, and then using it to mark deleted cells.
+In order to make sure this does not affect functionality,
+all comparisons to DELETED are made by reference, not by string.
+
+
+========================================
+=   5. The results of the analysis.    =
+========================================
+-- Adding data2.txt --------
+openHashSet Took 109 milliseconds
+closedHashSet Took 36 milliseconds
+java treeSet Took 54 milliseconds
+java linkedList Took 34457 milliseconds
+java hashSet Took 24 milliseconds    <<<<<<<
+
+--Contains "23" in data2.txt--------
+OpenHashSet Took 44 nanoseconds.     <<<<<<<
+ClosedHashSet Took 45 nanoseconds.
+java treeSet Took 99 nanoseconds.
+java linkedList Took 189 nanoseconds.
+java hashSet Took 85 nanoseconds.
+
+--Contains "hi" in data2.txt --------
+OpenHashSet Took 39 nanoseconds.
+ClosedHashSet Took 24 nanoseconds.
+java treeSet Took 74 nanoseconds.
+java linkedList Took 869502 nanoseconds.
+java hashSet Took 8 nanoseconds.  <<<<<<<
+
+--Adding data1.txt -----------------
+openHashSet Took 99455 milliseconds
+closedHashSet Took 177210 milliseconds
+java treeSet Took 42 milliseconds
+java linkedList Took 45774 milliseconds
+java hashSet Took 40 milliseconds  <<<<<<<<
+
+--Contains "-13170890158" in data1.txt------
+OpenHashSet Took 939085 nanoseconds.
+ClosedHashSet Took 2152213 nanoseconds.
+java treeSet Took 481 nanoseconds.
+java linkedList Took 2213425 nanoseconds.
+java hashSet Took 26 nanoseconds.  <<<<<<<<
+
+--Contains "-13170890158" in data1.txt---
+OpenHashSet Took 9 nanoseconds.
+ClosedHashSet Took 12 nanoseconds.
+java treeSet Took 181 nanoseconds.
+java linkedList Took 1946485 nanoseconds.
+java hashSet Took 7 nanoseconds. <<<<<<<
+
+========================================================
+=   6. Discuss the results of the analysis in depth.   =
+========================================================
+
+0 Account, in separate, for OpenHashSet’s and ClosedHashSet’s bad results for data1.txt.
+
+  The open hash set sucks because all the data is in the same bucket - a linked list.
+  This is true even after rehashing.
+  Every contains (and so also add) call must traverse the entire list.
+
+  The closed has set sucks for a similar reason - all objects are in one "chain"
+  in terms of the number of probes required to find them.
+  Each check must traverse the entire "chain" + the time required to calculate
+  and clamp the probing formula.
+
+0 Summarize the strengths and weaknesses of each of the data structures as reflected by
+  the results. Which would you use for which purposes?
+
+  Well obviously from the results I'd probably use Java's hashSet for almost everything.
+  But the test don't provide information concerning memory efficiency, so there's hope
+  for my data structures yet.
+
+  Additional, my data structures outdid java's hashSet by a factor of 2 when running
+  a "Contains" check on an element that was indeed contained. So hey are worth using
+  if we have a set whose main use will be contains confirmation
+  - a guest list for a really big party, for example :)
+
+
+0 How did your two implementations compare between themselves?
+
+  Overall both implementations did very similarly, even with the pathological data.
+  I would cautiously conclude that the traversal time of a linked list
+  is overall very similar to the time-complexity of quadratic probing.
+
+
+0 How did your implementations compare to Java’s built in HashSet?
+
+  https://youtu.be/v5Co3A3fLBo?t=2m6s
+
+
+0 What results surprised you and which did you expect?
+
+  I feel like i expected, or at least understood, most of the results.
+
+  But holy crap java's hashSet is fast.
+
+
+0 Did you find java’s HashSet performance on data1.txt surprising?
+
+    Hell yes.
+
+  * Can you explain it?
+
+    Hell no.
+
+    My best guess is that it uses a lot more space-complexity to enable such a significant improvement.
+    Or else perhaps when it detects many collisions it rehashes and switches to a different hash functions.
+
+  * Can Google? (no penalty if you don't Google it and leave this empty)
+
+    Sort of - it seems hashMap "cheats" by using keys in addition to values,
+    and, more significantly - rehashing the hashcode to protect against poor hash-functions.
+
+
+0 If you tried clamping expressions to valid indices in more than one way, what were they
+and how significant was the speed-up?
+
+    I didn't try more than one way.
+
+==============================
+=      Special Comments      =
+==============================
+
+==============================
+=  Colleagues and Resources  =
+==============================
+
+==============================
+=     Jherskow Solutions     =
+=     Joshua Herskowitz      =
+=         321658379          =
+==============================

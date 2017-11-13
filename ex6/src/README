@@ -1,0 +1,90 @@
+jherskow
+felber
+
+
+
+==============================
+=      File Description     =
+==============================
+
+Variable        -   Represents a variable. Variables have types and can be assigned.
+Block           -   Represents an if/while block. Blocks must get boolean parameters and are scopes.
+Global          -   A type of scope that can define methods and can't call them or blocks.
+Method          -   A type of scope that receives variables.
+Scope           -   An abstract class that units types of scopes.
+CompileError    -   The error thrown if the code is bad.
+FileReader      -   Used to read the input file.
+Sjava           -   The main that runs the test.
+
+==============================
+=           Design           =
+==============================
+
+The program make an array list from the file that it is given. Then it runs 2 passes. The first pass
+defines the global variables and the functions. The second pass goes into all the scopes and makes sure
+that everything is okay. If any line fails the program throws a CompileError. That error goes back through
+all of the functions until the main caches it. At that point, the main prints the error to err and 1 to out.
+If it finished without a problem then it prints 0 to out.
+
+==============================
+=   Implementation Issues    =
+==============================
+
+
+
+==============================
+=    Answers to Questions    =
+==============================
+
+We made one error called CompileError that would be thrown for any compiling issue. The reason that it is
+one class is because all compile errors are handles identically, the program prints 2. However, whenever
+an error is thrown, the reason for that error is added to the message. That message is then displayed.
+
+When deciding how to program this assignment we briefly considered making the code similar to functional
+programming since the program does not use objects many times after creation. The program needs to parse
+everything and run certain functions depending on what line was received. Furthermore, Java handles regexes
+worse than other languages, such a python.
+
+We later decided to use the style that we should use should be according to the style that we were taught.
+We then decided to split the sjava code into scopes. Every scope has access to the variables above them.
+Every scope has a list of scopes below them and a list of variables.
+
+We considered how to make the code modular and we thought of several ways to do that. If we want to add
+more variables then can add that to the regex, define what inputs it can receive and what variables can
+receive it, and we would need to add it to the enum. We could also add return values to functions by
+defining the return value as a parameter to the method class and then verifying that values assigned to
+them are legal.
+
+In order to use methods from standard java we would simply parse the standard library's javadoc and then
+whenever an sjava code tries to run one of those functions the code would check if that function is
+declared in the standard library.
+
+The main regexes that we used were:
+
+"^(if|while)\\s*\\(([^\\)]+)\\)\\s*\\{$" -      It checks if the line is a block and then it grabs
+                                                everything inside the block.
+"((?<==)|(?==)|(?<=,)|(?=,))"            -      It splits a line by commas and equals but adds them to the
+                                                match. It is used because we want to make sure that a variable
+                                                initialisation is correct. That means that there must be
+                                                equals in certain places and commas in others.
+"void\\s+(\\w+)\\s*\\(([^\\)]*)\\)\\s*\\{"  -   Recognises methods and saves whatever the parameters are.
+                                                In order to make the code more modular we simply add the
+                                                other forms of returns to this.
+
+
+In the UML we made a lot of error classes and split while and if. We decided to unite the error since they
+are all handled the same way. If we would like to extend our code and add warnings, we would define a new
+class that would be called a warning that would continue to check the entire code, but it would print
+something else to signify a warning. We united the if and while blocks because in this exercise there are
+no differences. If they were separate then there would be code duplication.
+
+
+==============================
+=      Special Comments      =
+==============================
+N/A
+
+==============================
+=  Colleagues and Resources  =
+==============================
+N/A

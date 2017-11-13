@@ -1,0 +1,84 @@
+jherskow
+
+~oop/bin/ex4/presubmission/test.py ex4.jar
+
+jar -cvf ex4.jar README oop/ex4/data_structures/*.java
+
+====================================
+= README for ex???:   ?????™       =
+====================================
+
+==============================
+=      File Description     =
+==============================
+This section contains a list of the program files you submit. The
+description of each file starts on a new line, and contains its name and a short
+description (1-2 lines) of its content.
+
+==============================
+=           Design           =
+==============================
+In this section, you should document all design issues and decisions you
+have made (not including those that were provided by us of course). You should
+briefly describe the design (what are the classes, what are their relationships, etc.).
+When using inheritance, you should describe the inheritance hierarchy. Finally,
+but most importantly, you should briefly explain why you have made the various
+design choices
+
+==============================
+=   Implementation Issues    =
+==============================
+This section should contain all important comments about
+implementation issues that you think would help understanding your code, or
+should be pointed out since they are important in some sense.
+
+==============================
+=    Answers to Questions    =
+==============================
+Please address the following points in your README file:
+
+8.1.1
+1. Describe which class(es) (if any) you wrote as part of your implementation of an AVL tree,
+other than AvlTree. The description should include the purpose of each class, its important
+methods and its interaction with the AvlTree class.
+
+8.1.2
+2. Describe your implementation of the methods add() and delete(). The description should
+include the general workflow in each of these methods. You should also indicate which helper
+methods you implemented for each of them, and which of these helper methods are shared
+by both of them (if any).
+
+8.1.3
+3. Your README file should also answer the question from Section 6.
+
+6.1.1
+Find a series of 12 numbers, such that when they are inserted into an empty AVL tree
+one-by-one, the result will be a tree of height 4 (insertions only, no deletions).
+
+    * 10,15,5,20,13,7,3,21,2,4,8,6
+
+6.2.1
+What is the asymptotic running time complexity of your tree construction from an array of
+length n done in AvlTree(int[] data)? Explain briefly.
+
+    * !!!!!!!!!!!!!!!!!
+6.2.2
+What is the asymptotic running time complexity of your tree construction done in AvlTree(AvlTree
+avlTree)? Explain briefly.
+
+    * !!!!!!!!!!!!!!!!!
+
+
+==============================
+=      Special Comments      =
+==============================
+
+==============================
+=  Colleagues and Resources  =
+==============================
+
+==============================
+=     Jherskow Solutions     =
+=     Joshua Herskowitz      =
+=         321658379          =
+==============================

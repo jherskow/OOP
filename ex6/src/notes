@@ -1,0 +1,16 @@
+
+~oop/bin/ex6
+
+jar cvf ex6.jar README oop
+
+
+			REGEX_BLOCK= "^(if|while)\\s*\\(([^\\)]+)\\)\\s*\\{$",
+
+			REGEX_SPLIT_DECLARATION_EQUALS_COMMA = "((?<==)|(?==)|(?<=,)|(?=,))",
+
+^ used in scope
+
+
+  v used in method
+
+  					REGEX_METHOD_DEF_LINE_PARSE = "void\\s+(\\w+)\\s*\\(([^\\)]*)\\)\\s*\\{",

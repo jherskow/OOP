@@ -1,0 +1,114 @@
+jherskow
+felber
+
+==============================
+=      File Description     =
+==============================
+
+Command.java                 -       Represents a single command. Each command has a filter and an order.
+
+CommandFactory.java          -       The CommandFactory class handles the creation of a Command array
+                                     from a given input.
+
+DirectoryProcessor.java      -       The main class that can run the assignment
+
+Explorable.java              -       An interface that allows us to use only the relevant methods form the
+                                     file
+
+FileFacadeExplorable.java    -       A class which wraps a file in the interface methods of the Explorable
+                                     Interface.
+
+Filter.java                  -       A Filter takes care of filtering a directory. It implements Predicate in
+                                     order to do so.
+
+FilterLambda.java            -       An interface that represents the type of lambda functions that the filter
+                                     can use
+
+Order.java                   -       A Filter takes care of filtering a directory. It implements Comparator
+                                     in order to do so.
+
+OrderLambda.java             -       An interface that represents the type of lambda functions that the order
+                                     can use
+
+Type1Error.java              -       Warnings that happen when input is not valid and the program results
+                                     to the default behavior.
+
+Type2Error.java              -       Errors that happen when input is not valid and the program is unable
+                                     to continue with that set of commands
+
+==============================
+=           Design           =
+==============================
+MODULARITY:
+
+= One can easily add a new filter lambda or order lambda by simply adding it to
+  the switch case in the Filter or Order class respectively.
+
+= If more file attributes are desired - they can be added to the Explorable Interface.
+
+= If someone wanted to implement the program for other objects besides files (such as Folders, links, etc.)
+  the user can simply wrap this object in a new SomethingFacadeExplorable that would implement
+  the interface.
+
+= The two types of errors are defined in separate classes based on the resulting functionality.
+  This way future methods can make use of these error types.
+
+UML:
+
+= We diverged slightly from the UML to make the code more readable and maintainable:
+    We added classes for the different errors and separated the Command-making method
+    to a new factory class, since we realised this is exactly the Factory design pattern.
+
+==============================
+=   Implementation Issues    =
+==============================
+
+= We chose to use Lambda functions for the filter and order classes,
+  since in Intro2cs we were told that the use case for  higher-order programming
+  is in cases such as these - where the methods in our program need to be chosen differently
+  and dynamically based on different inputs.
+  This way, new filters and orders are easily created, without an overload of different classes, which would
+  affect maintainability, readability, and extendability.
+
+==============================
+=    Answers to Questions    =
+==============================
+
+1. Explain all your design choices in detail.
+
+   = See above.
+
+2. Describe the exceptions hierarchy you used in order to handle errors in the program.
+   & Explain the considerations that made you choose that specific design.
+
+   All type 1 errors result in a "warning in line x" message, without halting the program.
+
+   All type 2 errors result in the program ending, with a "ERROR: (SOMETHING)" message.
+
+   Since the only difference between errors of the same type is the message, and not the handling,
+   we decided to implement these two classes, with a constructor that will generate the desired
+   error message. - (either a line number for type1, or a specific cause of a type2 error)
+
+
+3. How did you sort your matched files? Did you use a data structure for this purpose?
+If so, what data structure and why?
+
+   = Since we were given access to all java.util, we simply used java's built in sort for arrays.
+     In order for this to work, we implemented the order object as a comparator, which Arrays.sort
+     requires as a parameter.
+
+     To get the correct order, we called sort twice,
+     - once with the default sort, as a secondary sort, reversed if necessary.
+     - And again with the specific sort.
+
+==============================
+=      Special Comments      =
+==============================
+N/A
+
+==============================
+=  Colleagues and Resources  =
+==============================
+N/A
+
+

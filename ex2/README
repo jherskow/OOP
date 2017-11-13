@@ -1,0 +1,93 @@
+jherskow
+
+====================================================
+= README for ex2:   Inter-Galactic Boogaloo™       =
+====================================================
+
+==============================
+=      File Description     =
+==============================
+AgressiveShip
+    A ship with some serious anger issues.
+BasherShip
+    A ship cruisin' for a bruisin'.
+DrunkShip
+    A ship flying under the influence.
+FederationShip
+    A vessel belonging to the United Federation of Planets.
+HumanShip
+    A human-controlled spaceship.
+RunnerShip
+    A Ship that runs away from it's problems.
+SpaceShip
+    An abstract class for creating SpaceShip Types.
+SpaceShipFactory
+	ְA factory that creates a list of spaceships from the program's command line arguments.
+SpaceWars
+    This class acts as the driver for the Space Wars game.
+
+
+==============================
+=           Design           =
+==============================
+I decided to design SpaceShip as an abstract class, leaving only the DoAction method unimplemented.
+
+This allows for easy extensibility, since a new ship type needs only implement this method.
+
+This design also allowed for a minimal amount of code duplication:
+Useful methods, such as one that finds the angle to the closest ship,
+ are part of the abstract class. This allows for modularity, enabling the author of a new type
+to use these often-helpful methods when creating their doAction.
+
+In terms of modularity, the current scheme keeps matters relatively straightforward,
+since there is only one parent class to worry about besides the supplies classes given.
+
+I feel that my design is intuitive since it allows
+
+
+==============================
+=   Implementation Issues    =
+==============================
+To save on code, all ships use the regular AI ship image, except for humanShip, which
+overrides the main method.
+
+The rechargeEnergy method also helps make it as simple as possible to create new types. since it
+is implemented in the abstract class. However, one possible fallback is that a type creator might forget
+to call it in his doAction.
+
+==============================
+=    Answers to Questions    =
+==============================
+-- DRUNKARD --
+Rather than having erratic and completely random ship movements, I wanted a more natural feel
+for the drunk ship.
+
+By implementing a timer, I was able to have the ship make turns in a random direction and accelerate
+for a few moments, and then coast until the captain drunkenly turns the till again.
+
+-- SPECIAL --
+
+I'm a huge Trekkie, so this choice was a no brainer.
+
+In accordance with the show, the federation vessel does not actively seek conflict.
+It will also intelligently raise shields whenever it is in a nearby ship's sights.
+
+However, if attacked, the combination of the aggressive ship's strategy and the intelligent auto-shield
+make the federation ship a formidable if not near-invincible enemy.
+- The player would be wise to carefully consider before attacking a federation starship,
+  perhaps it would be best to wait until other ships are
+  in the area.
+
+==============================
+=      Special Comments      =
+==============================
+
+==============================
+=  Colleagues and Resources  =
+==============================
+
+==============================
+=     Jherskow Solutions     =
+=     Joshua Herskowitz      =
+=         321658379          =
+==============================

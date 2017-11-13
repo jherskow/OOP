@@ -1,0 +1,64 @@
+jherskow
+
+
+====================================
+= README for ex0:   Knesset™       =
+====================================
+A straightforward introductory exercise in the Java Language.
+The bugs and compilation errors encountered in this exercise
+are meant to artistically convey the staggering extent
+of the ineptitude of the Israeli Legislature to the students.
+
+==============================
+=      File Description     =
+==============================
+
+KnessetMember.Java
+    - A class representing a Knesset member and his legislative tendencies.
+
+Law.Java
+    - A class representing a law (technically a bill)  -(https://www.youtube.com/watch?v=tyeJ55o3El0)
+
+Assembly.Java
+    - A class representing a legislative session of the Knesset. Keeps track of laws, and the
+      Knesset members that will back them, with a "suggest" functionality to assist the poor sods.
+
+==============================
+=           Design           =
+==============================
+All api methods are public, and almost all other objects are private,
+since we were instructed not to worry about public/private in this exercise.
+And i don't quite know how to do it yet either.
+
+The exceptions are the modifier fields for KnessetMember law support.
+
+==============================
+=   Implementation Issues    =
+==============================
+A few elements of the API seem to go unused, but i have left them in.
+
+==============================
+=    Answers to Questions    =
+==============================
+N/A
+
+==============================
+=      Special Comments      =
+==============================
+N/A
+
+==============================
+=  Colleagues and Resources  =
+==============================
+N/A
+
+==============================
+=  Colleagues and Resources  =
+==============================
+N/A
+
+==============================
+=     Jherskow Solutions     =
+=     Joshua Herskowitz      =
+=         321658379          =
+==============================

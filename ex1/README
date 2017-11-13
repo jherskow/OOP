@@ -1,0 +1,78 @@
+jherskow
+
+
+====================================
+= README for ex1:  Finding Nim™    =
+====================================
+
+==============================
+=      File Description     =
+==============================
+This section contains a list of the program files you submit. The
+description of each file starts on a new line, and contains its name and a short
+description (1-2 lines) of its content.
+
+==============================
+=           Design           =
+==============================
+
+=== Competition: ===
+- playTurn returns an flag signifying the game status. This makes for a simple playRound.
+
+=== Player: ===
+- in produceRandomMove, i opted for an approach that always runs in constant time:
+   any move is possible, but further into the game this would require many loops to achieve
+   a fully random AND legal move. Instead, if the random move is illegal, the method opts
+   for the next unmarked stick. This allows the program to run 1 million Random v. Random
+   Rounds in about 3 seconds.
+
+
+==============================
+=   Implementation Issues    =
+==============================
+
+=== General: ===
+In order to make the code more readable,
+I decided to leave the messages to the user as string literals.
+In most cases, since the messages include variables,
+the alternative approach would use a print format,
+and make the purpose of some messages harder to discern.
+
+=== Competition: ===
+- scoreTally is an int[] with 3 places so that scores can be accessed directly by playerID.
+
+==============================
+=    Answers to Questions    =
+==============================
+
+== Explain your implementation of the Smart player: ==
+
+ The implementation i used is based on the fact that we always want to try and hand our opponent an odd
+ number of unmarked sticks.
+
+ In the base case, this leaves our opponent with 1 stick, and he is forced to lose.
+
+ So we check and see:
+ - If we are handed an odd board, we try to remove 2 to keep it odd.
+ - If we are handed an even board, we remove 1 to make it odd.
+
+ Honestly, I was quite surprised how often this player beats the random player.
+
+ But this is probably more of a testament to the stupidity of the random player
+ than to any intelligence of my own.
+
+==============================
+=      Special Comments      =
+==============================
+N/A
+
+==============================
+=  Colleagues and Resources  =
+==============================
+N/A
+
+==============================
+=     Jherskow Solutions     =
+=     Joshua Herskowitz      =
+=         321658379          =
+==============================
