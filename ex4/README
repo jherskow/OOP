@@ -1,81 +1,114 @@
 jherskow
 
-~oop/bin/ex4/presubmission/test.py ex4.jar
-
-jar -cvf ex4.jar README oop/ex4/data_structures/*.java
-
 ====================================
-= README for ex???:   ?????™       =
+= README for ex4:   AVL Trees™       =
 ====================================
 
 ==============================
 =      File Description     =
 ==============================
-This section contains a list of the program files you submit. The
-description of each file starts on a new line, and contains its name and a short
-description (1-2 lines) of its content.
+
+Class AvlTree
+
+A class for the AVL tree. An avl tree has a minimal set of methods,
+Almost all of which delegate to root - an AvlNode belonging to the tree.
+
+Class AvlNode.
+
+A class representing an AvlNode- which is itself an Avl Tree.
+Most of the functionality is implemented in this class, allowing
+us to treat each node as the root of it's own tree.
+
+Interface BinarSearchTree
+
+An interface giving the general API for a binary search tree,
+Which is implemented by AvlTree.
 
 ==============================
 =           Design           =
 ==============================
-In this section, you should document all design issues and decisions you
-have made (not including those that were provided by us of course). You should
-briefly describe the design (what are the classes, what are their relationships, etc.).
-When using inheritance, you should describe the inheritance hierarchy. Finally,
-but most importantly, you should briefly explain why you have made the various
-design choices
+In the UML I decided to implement most of the functionality in class node.
+At the time i thought it would be appropriate, since each node is itself a tree.
+
+However, the last method i had to implement, Delete, was a problem -
+- there is no way that i know of yet to delete an object from within itself.
+Because of this, i had to duplicate code for delete in both classes, which is messy,
+confusing and inefficient.
+
+I wanted to start again from scratch, but i did not have enough time.
+In the future i will ensure i understand the pseudocode of the basic methods required
+before i settle on a final design for the UML.
 
 ==============================
 =   Implementation Issues    =
 ==============================
-This section should contain all important comments about
-implementation issues that you think would help understanding your code, or
-should be pointed out since they are important in some sense.
+The iterator calls makelist to create a list, and then
+returns that list as an iterable.
+
+The AvlTree(AvlTree tree) constucto
 
 ==============================
 =    Answers to Questions    =
 ==============================
 Please address the following points in your README file:
 
-8.1.1
-1. Describe which class(es) (if any) you wrote as part of your implementation of an AVL tree,
+8.1.1  Describe which class(es) (if any) you wrote as part of your implementation of an AVL tree,
 other than AvlTree. The description should include the purpose of each class, its important
 methods and its interaction with the AvlTree class.
 
-8.1.2
-2. Describe your implementation of the methods add() and delete(). The description should
+== See section above.
+
+8.1.2 Describe your implementation of the methods add() and delete(). The description should
 include the general workflow in each of these methods. You should also indicate which helper
 methods you implemented for each of them, and which of these helper methods are shared
 by both of them (if any).
 
-8.1.3
-3. Your README file should also answer the question from Section 6.
+ == add in AvlTree calls add in avlNode on the root node.
+    (unless root is null)
+    It then continues calls down the tree, based on the required direction.
+    Once an empty child is found in the correct direction, an insertion is performed.
+    After instertion, refreshHeight and Rebalance are called.
 
-6.1.1
-Find a series of 12 numbers, such that when they are inserted into an empty AVL tree
+ == delete in AvlTree calls delete on the root node.
+    (unless root is null or the delete value, in which case the same code for node.delete
+    is performed in tree.delete)
+    It then continues calls down the tree, based on the required direction.
+    the method then performs deletion, with different methods depending on the number of children.
+    After deletion, refreshHeight and Rebalance are called.
+
+6.1.1 Find a series of 12 numbers, such that when they are inserted into an empty AVL tree
 one-by-one, the result will be a tree of height 4 (insertions only, no deletions).
 
-    * 10,15,5,20,13,7,3,21,2,4,8,6
+  == 10,15,5,20,13,7,3,21,2,4,8,6
 
 6.2.1
 What is the asymptotic running time complexity of your tree construction from an array of
 length n done in AvlTree(int[] data)? Explain briefly.
 
-    * !!!!!!!!!!!!!!!!!
+    == the runtime, in the worst case, is a monotonic int[], leading to a rebalance at almost
+       every insertion. Since insertion is O(logn) for each element, we get n log n.
+
 6.2.2
 What is the asymptotic running time complexity of your tree construction done in AvlTree(AvlTree
 avlTree)? Explain briefly.
 
-    * !!!!!!!!!!!!!!!!!
+    * since in my case the iterator is a sorted list, we are assured to worst case for every
+      insertion :)
+      So we will again have n log n
+      If we add the time to iterate over the first tree, we get n log n + n
+      (since the iteration visits each node once).
 
 
 ==============================
 =      Special Comments      =
 ==============================
+N/A
 
 ==============================
 =  Colleagues and Resources  =
 ==============================
+http://www.exmsft.com/~hanss/badcode.htm
+
 
 ==============================
 =     Jherskow Solutions     =
